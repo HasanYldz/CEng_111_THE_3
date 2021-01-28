@@ -25,23 +25,6 @@ def make_tree(part_list):
     return tree
 
 
-lst =        [["bike", (2, "wheel"), (1, "frame")],
-             ["wheel", (1, "rim"), (1, "spoke"),(1, "hub")],
-             ["rim", 60.],
-             ["spoke", 120.],
-             ["hub", (2, "gear"), (1, "axle")],
-             ["gear", 25.],
-             ["axle", (5, "bolt"), (7, "nut")],
-             ["bolt", 0.1],
-             ["nut", 0.15],
-             ["frame", (1, "rearframe"), (1, "frontframe")],
-             ["rearframe", 175.],
-             ["frontframe", (1, "fork"), (2, "handle")],
-             ["fork", 22.5],
-             ["handle", 10.]]
-
-
-
 def calculate_price(part_list):
     def helper(x):
         if type(x[1]) == float:
@@ -67,9 +50,6 @@ def required_parts(part_list):
     return helper(make_tree(part_list))
 
 
-tre = ["bike", (2, ["wheel", (1, ["rim", 60.]), (1, ["spoke", 120.]),(1, ["hub", (2, ["gear", 25.]), (1, ["axle", (5, ["bolt", 0.1]), (7, ["nut", 0.15])])])]), (1, ["frame", (1, ["rearframe", 175.]), (1, ["frontframe", (1, ["fork", 22.5]), (2, ["handle", 10.])])])]
-stock_list = [(2, "rim"), (2, "spoke"), (4, "gear"), (8, "bolt"), (12, "nut"), (1, "rearframe"), (1, "fork"), (1, "handle")]
-
 def stock_check(part_list, stock_list):
     need = required_parts(part_list)
     need_catalogue = [need[a][1] for a in range(len(need))]
@@ -79,7 +59,7 @@ def stock_check(part_list, stock_list):
     for part in need:
         if part[1] in stock_catalogue:
             ind = stock_catalogue.index(part[1])
-            l = part[0] - stock_list[ind][0]
+            l = part[0] - necessary_stock[ind][0]
             if l > 0:
                 short.append((part[1], l))
         else:
@@ -88,10 +68,6 @@ def stock_check(part_list, stock_list):
 
 
 
-# print(make_tree(lst))
-# print(calculate_price(lst))
-# print(required_parts(lst))
-# print(stock_check(lst,stock_list))
 
 part_list1 = [['House', (4, 'Room'), (2, 'Bathroom'), (1, 'Kitchen')], ['Room', (30, 'Parquet'), (3, 'Window'), (2, 'Calorifere')], ['Window', (2, 'Glass'), (1, 'PVC')], ['Bathroom', (20, 'Tile'), (1, 'Lavabo'), (1, 'Toilet'), (1, 'Shower')], ['Toilet', (1, 'Flush'), (1, 'ToiletSeat')], ['Kitchen', (1, 'Balcony'), (2, 'Sink'), (1, 'Built-ins'), (8, 'Cabinet')], ['Balcony', (5, 'Parapet')], ['Built-ins', (1, 'ExtractionHood'), (1, 'Cooker'), (1, 'Oven')], ['Parquet', 30.], ['Glass', 100.], ['PVC', 40.5], ['Calorifere', 180.5], ['Tile', 30.], ['Lavabo', 142.8], ['Flush', 240.], ['ToiletSeat', 445.7], ['Shower', 810.], ['Parapet', 40.], ['Sink', 222.], ['ExtractionHood', 960.], ['Cooker', 1400.], ['Oven', 1230.5], ['Cabinet', 230.]]
 
@@ -134,6 +110,31 @@ stock_list8 = [(29484, 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD'), (68040, 'AAAA
 stock_list9 = [(1620, 'AAAAAAAAAO'), (2940, 'AAAAE'), (420, 'AAAAAAAG'), (420, 'AAAAAAU'), (630, 'AAAL'), (1890, 'AAAAAAD'), (320, 'AAU'), (840, 'AAAAK'), (1680, 'AAAAH'), (1890, 'AAAAAV'), (3150, 'AAAAAE'), (1260, 'AAAAAY'), (2205, 'AAAAAAAW'), (315, 'AAAT'), (2250, 'AAAAAAAAV'), (1260, 'AAAAAB'), (525, 'AAAAAAAAAP'), (4200, 'AAAAAAAI'), (1260, 'AAAAG'), (1890, 'AAAAAAH'), (2250, 'AAAAAAAAW'), (630, 'AAAAAS'), (75, 'AQ'), (2940, 'AAAAAAAAF'), (90, 'AAP'), (420, 'AAAQ'), (840, 'AAAAJ'), (1575, 'AAAAAAAJ'), (150, 'AP'), (3360, 'AAAAAAQ'), (630, 'AAAAAX'), (210, 'AAG'), (240, 'AAT'), (525, 'AAAAAAAF'), (630, 'AAAP'), (1260, 'AAAAAAAS'), (450, 'AAAAAAAAK'), (3675, 'AAAAAAAL'), (35, 'AAA'), (30, 'AAX'), (2100, 'AAAAX'), (105, 'AAAAAAX'), (15, 'H'), (2100, 'AAAAAAAM'), (2520, 'AAAAP'), (840, 'AAAAQ'), (2520, 'AAAAAAN'), (3360, 'AAAAR'), (540, 'AAAAAAAAAF'), (1680, 'AAAAAAO'), (2520, 'AAAAV'), (30, 'AAQ'), (840, 'AAAAAL'), (1680, 'AAAAZ'), (2700, 'AAAAAAAAAG'), (735, 'AAAAAAV'), (420, 'AAAAAJ'), (2520, 'AAAAAAJ'), (450, 'AAAAAAAAY'), (420, 'AAAS'), (840, 'AAAM'), (840, 'AAAAW'), (1350, 'AAAAAAAAM'), (1350, 'AAAAAAAAR'), (3360, 'AAAAO'), (630, 'AAAAAF'), (2100, 'AAAAAD'), (420, 'AAAO'), (1890, 'AAAAAU'), (450, 'AAAAAAAAP'), (1260, 'AAAAAR'), (2700, 'AAAAAAAAAK'), (105, 'AAAB'), (2625, 'AAAAAAAR'), (315, 'AAAAA'), (2100, 'AAAAAAAAB'), (105, 'AAAI'), (840, 'AAAAT'), (1800, 'AAAAAAAAO'), (525, 'AAAAAAAH'), (735, 'AAAAAAAB'), (420, 'AAAV'), (630, 'AAAH'), (900, 'AAAAAAAAX'), (840, 'AAAAAQ'), (5040, 'AAAAAAG'), (3600, 'AAAAAAAAQ'), (2160, 'AAAAAAAAAB'), (1080, 'AAAAAAAAAM'), (2880, 'AAAAAAAAAC'), (3360, 'AAAAAI'), (1890, 'AAAAAAAX'), (45, 'AAW'), (1620, 'AAAAAAAAAL'), (630, 'AAAAAAF'), (630, 'AAAAAG'), (105, 'AAAAAAAD'), (15, 'AAS'), (2100, 'AAAAAAAAH'), (1890, 'AAAAAAAY'), (3150, 'AAAAAAE'), (105, 'AAV'), (3150, 'AAAAAAAAN'), (3240, 'AAAAAAAAAH'), (420, 'AAAAF'), (600, 'AT'), (2100, 'AAAAAAL'), (525, 'AAAW'), (450, 'AAAAAAAAZ'), (735, 'AAAAAAY'), (225, 'AS'), (840, 'AF'), (2520, 'AAAAM'), (70, 'AY'), (150, 'AAJ'), (1260, 'AAAAAM'), (2520, 'AAAAAAI'), (1080, 'AAAAAAAAAA'), (450, 'AAAAAAAAU'), (4410, 'AAAAAAA'), (840, 'AAAR'), (1680, 'AAAAAAP'), (315, 'AAAAAAAA'), (180, 'AAF'), (5040, 'AAAAAW'), (1680, 'AAAAAAT'), (3360, 'AAAAU'), (300, 'AU'), (30, 'AAAD'), (525, 'AAAAAAAO'), (1260, 'AAAAC'), (1680, 'AAAAAAAAJ'), (300, 'AV'), (240, 'AAD'), (30, 'AAL'), (1260, 'AAAAAAAU'), (3360, 'AAAAAA'), (180, 'AAB'), (840, 'AAAAAAAAG'), (2160, 'AAAAAAAAAD'), (315, 'AAAY'), (105, 'AAAAAAW'), (3360, 'AAAAAAAAI'), (240, 'AAH'), (210, 'AAAN'), (1350, 'AAAAAAAAL'), (105, 'AAAJ'), (300, 'AX'), (420, 'AAAAAAZ'), (15, 'AAZ'), (420, 'AAAAAN'), (1260, 'AAAAAAR'), (15, 'E'), (105, 'AAAU'), (2100, 'AAAG'), (120, 'AAR'), (3675, 'AAAAAAAP'), (450, 'AW'), (2100, 'AAAAAK'), (1575, 'AAAAAAAQ'), (210, 'AAI'), (6720, 'AAAAN'), (420, 'AAAAAAK'), (105, 'AAM'), (840, 'AAAAAAAAC'), (2700, 'AAAAAAAAAN'), (420, 'AAAAI'), (525, 'AAAX'), (1260, 'AAAAD'), (2100, 'AAAAAAAAD'), (105, 'AAAAAAAC'), (1050, 'AAAAAAAN'), (150, 'AAC'), (630, 'AAAAAZ'), (3150, 'AAAAAAC'), (15, 'AAAC'), (3360, 'AAAAAP'), (1080, 'AAAAAAAAAE'), (75, 'AAY'), (15, 'AAO'), (1260, 'AAAAAH'), (1890, 'AAAAAAAV'), (840, 'AAAZ'), (1680, 'AAAAAAAAA'), (540, 'AAAAAAAAAI'), (1575, 'AAAAAAAT'), (525, 'AAAAAAAE'), (2100, 'AAAAAAM'), (30, 'AAAE'), (3675, 'AAAF'), (210, 'AAE'), (2100, 'AAAAAAS'), (2250, 'AAAAAAAAS'), (5040, 'AAAAS'), (2205, 'AAAAB'), (3360, 'AAAAAAAAE'), (3150, 'AAAAAT'), (90, 'AAN'), (315, 'Y'), (3150, 'AAAAAAAK'), (3600, 'AAAAAAAAT'), (70, 'AZ'), (2205, 'AAAAAAAZ'), (450, 'AR'), (840, 'AAAAAC'), (4320, 'AAAAAAAAAJ'), (3360, 'AAAAY'), (4410, 'AAAAAAB'), (2100, 'AAAAAO'), (210, 'AAK'), (1680, 'AAAAL'), (45, 'AAAA'), (840, 'AAAK')]
 
 stock_list10 = [(525, 'AAAX'), (1681, 'AAAAAAAAA'), (3150, 'AAAAAE'), (2100, 'AAAAAD'), (1575, 'AAAAAAAT'), (3360, 'AAAAY'), (420, 'AAAAAAAG'), (1350, 'AAAAAAAAM'), (3360, 'AAAAAP'), (5040, 'AAAAAAG'), (525, 'AAAAAAAF'), (735, 'AAAAAAAB'), (525, 'AAAAAAAH'), (4320, 'AAAAAAAAAJ'), (30, 'AAAD'), (315, 'AAAT'), (840, 'AAAZ'), (1050, 'AAAAAAAN'), (15, 'AAO'), (1620, 'AAAAAAAAAO'), (450, 'AAAAAAAAP'), (2700, 'AAAAAAAAAN'), (3150, 'AAAAAAAAN'), (2100, 'AAAAAO'), (3600, 'AAAAAAAAQ'), (6720, 'AAAAN'), (2100, 'AAAG'), (420, 'AAAS'), (420, 'AAAAAN'), (1620, 'AAAAAAAAAL'), (2100, 'AAAAAAL'), (840, 'AAAR'), (120, 'AAR'), (3360, 'AAAAR'), (30, 'AAAE'), (105, 'AAAI'), (180, 'AAF'), (630, 'AAAH'), (2880, 'AAAAAAAAAC'), (1890, 'AAAAAAAX'), (2520, 'AAAAAAJ'), (1350, 'AAAAAAAAL'), (45, 'AAAA'), (525, 'AAAAAAAAAP'), (210, 'AAAN'), (30, 'AAQ'), (4410, 'AAAAAAA'), (630, 'AAAAAAF'), (3360, 'AAAAAAQ'), (1890, 'AAAAAAAV'), (1260, 'AAAAD'), (3675, 'AAAF'), (3360, 'AAAAO'), (210, 'AAK'), (3240, 'AAAAAAAAAH'), (70, 'AZ'), (2160, 'AAAAAAAAAD'), (525, 'AAAAAAAO'), (450, 'AR'), (1680, 'AAAAAAAAJ'), (30, 'AAX'), (1890, 'AAAAAAH'), (3360, 'AAAAAI'), (75, 'AAY'), (1350, 'AAAAAAAAR'), (105, 'AAAAAAX'), (4410, 'AAAAAAB'), (1260, 'AAAAAH'), (2100, 'AAAAAK'), (150, 'AAC'), (1890, 'AAAAAV'), (300, 'AX'), (735, 'AAAAAAY'), (150, 'AP'), (180, 'AAB'), (315, 'AAAY'), (1080, 'AAAAAAAAAE'), (420, 'AAAV'), (840, 'AAAAT'), (105, 'AAM'), (3675, 'AAAAAAAP'), (630, 'AAAAAS'), (2100, 'AAAAAAAAB'), (450, 'AW'), (30, 'AAL'), (3360, 'AAAAAA'), (1800, 'AAAAAAAAO'), (1260, 'AAAAAB'), (2940, 'AAAAAAAAF'), (2205, 'AAAAAAAW'), (1680, 'AAAAAAT'), (420, 'AAAQ'), (3360, 'AAAAAAAAE'), (420, 'AAAAF'), (1260, 'AAAAAAAS'), (840, 'AAAAK'), (2160, 'AAAAAAAAAB'), (840, 'AAAK'), (15, 'H'), (300, 'AU'), (2520, 'AAAAV'), (630, 'AAAP'), (1080, 'AAAAAAAAAM'), (840, 'AAAAJ'), (1260, 'AAAAAR'), (4200, 'AAAAAAAI'), (2205, 'AAAAB'), (2205, 'AAAAAAAZ'), (90, 'AAN'), (15, 'AAS'), (240, 'AAH'), (3150, 'AAAAAAC'), (240, 'AAD'), (210, 'AAG'), (5040, 'AAAAS'), (3333, 'WWWWR'), (840, 'AAAAW'), (45, 'AAW'), (540, 'AAAAAAAAAF'), (315, 'AAAAA'), (630, 'AAAAAX'), (1680, 'AAAAAAP'), (525, 'AAAAAAAE'), (2100, 'AAAAAAAAD'), (105, 'AAV'), (3360, 'AAAAU'), (630, 'AAAAAZ'), (1260, 'AAAAG'), (105, 'AAAB'), (2520, 'AAAAAAI'), (105, 'AAAAAAW'), (450, 'AAAAAAAAY'), (3600, 'AAAAAAAAT'), (210, 'AAI'), (1890, 'AAAAAU'), (111, 'ceng111'), (540, 'AAAAAAAAAI'), (525, 'AAAW'), (2520, 'AAAAAAN'), (105, 'AAAU'), (2520, 'AAAAM'), (15, 'AAAC'), (630, 'AAAAAF'), (2250, 'AAAAAAAAV'), (600, 'AT'), (840, 'AAAAQ'), (1575, 'AAAAAAAQ'), (225, 'AS'), (15, 'AAZ'), (420, 'AAAAAAK'), (420, 'AAAAAAU'), (2250, 'AAAAAAAAW'), (1260, 'AAAAAY'), (2100, 'AAAAAAAAH'), (315, 'AAAAAAAA'), (420, 'AAAAAJ'), (35, 'AAA'), (3360, 'AAAAAAAAI'), (2100, 'AAAAX'), (105, 'AAAJ'), (15, 'E'), (3150, 'AAAAAAAK'), (1575, 'AAAAAAAJ'), (1680, 'AAAAAAO'), (2625, 'AAAAAAAR'), (2625, 'XXXXXXXR'), (90, 'AAP'), (2700, 'AAAAAAAAAG'), (840, 'AAAM'), (1890, 'AAAAAAD'), (420, 'AAAO'), (630, 'AAAL'), (2700, 'AAAAAAAAAK'), (1680, 'AAAAZ'), (1260, 'AAAAAAAU'), (5040, 'AAAAAW'), (1260, 'AAAAAAR'), (1260, 'AAAAC'), (840, 'AAAAAL'), (2520, 'AAAAP'), (300, 'AV'), (2100, 'AAAAAAS'), (840, 'AAAAAQ'), (240, 'AAT'), (75, 'AQ'), (840, 'AAAAAAAAC'), (840, 'AAAAAAAAG'), (2940, 'AAAAE'), (3675, 'AAAAAAAL'), (3150, 'AAAAAT'), (840, 'AAAAAC'), (420, 'AAAAI'), (450, 'AAAAAAAAU'), (999, 'asdfghi'), (315, 'Y'), (1890, 'AAAAAAAY'), (70, 'AY'), (1080, 'AAAAAAAAAA'), (2250, 'AAAAAAAAS'), (105, 'AAAAAAAD'), (420, 'AAAAAAZ'), (900, 'AAAAAAAAX'), (450, 'AAAAAAAAK'), (630, 'AAAAAG'), (1680, 'AAAAH'), (450, 'AAAAAAAAZ'), (2100, 'AAAAAAM'), (210, 'AAE'), (735, 'AAAAAAV'), (840, 'AF'), (150, 'AAJ'), (2100, 'AAAAAAAM'), (1680, 'AAAAL'), (320, 'AAU'), (1260, 'AAAAAM'), (3150, 'AAAAAAE'), (105, 'AAAAAAAC')]
-print(calculate_price(part_list2))
-# print(required_parts(part_list1))
-# print(stock_check(part_list1,stock_list1))
+# print(calculate_price(part_list10))
+# print(required_parts(part_list9))
+print(stock_check(part_list10, stock_list10))
+
+lst =        [["bike", (2, "wheel"), (1, "frame")],
+             ["wheel", (1, "rim"), (1, "spoke"),(1, "hub")],
+             ["rim", 60.],
+             ["spoke", 120.],
+             ["hub", (2, "gear"), (1, "axle")],
+             ["gear", 25.],
+             ["axle", (5, "bolt"), (7, "nut")],
+             ["bolt", 0.1],
+             ["nut", 0.15],
+             ["frame", (1, "rearframe"), (1, "frontframe")],
+             ["rearframe", 175.],
+             ["frontframe", (1, "fork"), (2, "handle")],
+             ["fork", 22.5],
+             ["handle", 10.]]
+
+tre = ["bike", (2, ["wheel", (1, ["rim", 60.]), (1, ["spoke", 120.]),(1, ["hub", (2, ["gear", 25.]), (1, ["axle", (5, ["bolt", 0.1]), (7, ["nut", 0.15])])])]), (1, ["frame", (1, ["rearframe", 175.]), (1, ["frontframe", (1, ["fork", 22.5]), (2, ["handle", 10.])])])]
+stock_list = [(2, "rim"), (2, "spoke"), (4, "gear"), (8, "bolt"), (12, "nut"), (1, "rearframe"), (1, "fork"), (1, "handle")]
+
+
+
+# print(make_tree(lst))
+# print(calculate_price(lst))
+# print(required_parts(lst))
+# print(stock_check(lst,stock_list))
